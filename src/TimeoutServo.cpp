@@ -2,6 +2,9 @@
 #include "TimeoutServo.h"
 
 TimeoutServo::TimeoutServo() {
+  _pin = -1;
+  _min = MIN_PULSE_WIDTH;
+  _max = MAX_PULSE_WIDTH;
   _timeout = 1000;
   _lasttime = 0;
 }
@@ -12,15 +15,16 @@ uint8_t TimeoutServo::attach(int pin) {
 
 uint8_t TimeoutServo::attach(int pin, int min, int max) {
   _pin = pin;
-  //return Servo::attach(pin, min, max);
+  _min = min;
+  _max = max;
 }
 
 uint32_t TimeoutServo::setTimeout(uint32_t timeout) {
-  _timeout = timeout;
+  return _timeout = timeout;
 }
 
 void TimeoutServo::write(int value) {
-  Servo::attach(_pin);
+  Servo::attach(_pin, _min, _max);
   Servo::write(value);
   _lasttime = millis();
 }

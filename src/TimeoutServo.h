@@ -13,6 +13,8 @@ public:
   void run();
 private:
   int _pin;
+  int _min;
+  int _max;
   uint32_t _timeout;
   unsigned long _lasttime;
 };
