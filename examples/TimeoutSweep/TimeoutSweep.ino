@@ -22,4 +22,4 @@ void loop()
     servo.write(pos);
   }
   servo.run();
-} 
+}
